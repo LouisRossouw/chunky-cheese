@@ -28,9 +28,11 @@ using an HC-SR501 PIR sensor and an ISP DSI Display.
 | GND          | GND          |
 | OUT          | GPIO 4       |
 
+
 ---
 
-### Run directly (Development)
+
+### OR Run directly (Development)
 
 - (Just change the path to the config file in the python script.)
 
