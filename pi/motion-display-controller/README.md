@@ -2,8 +2,7 @@
 
 Auto switch an IPS DSI display on, dim, and off based on motion detection.
 
-Currently using it for Raspberry Pi 3 Model B
-using an HC-SR501 PIR sensor and an ISP DSI Display.
+Currently using it for Raspberry Pi 3B+ with a HC-SR501 PIR sensor and an ISP DSI Display.
 
 ## Quick Install
 
@@ -28,9 +27,11 @@ using an HC-SR501 PIR sensor and an ISP DSI Display.
 | GND          | GND          |
 | OUT          | GPIO 4       |
 
+
 ---
 
-### Run directly (Development)
+
+### OR Run directly (Development)
 
 - (Just change the path to the config file in the python script.)
 
