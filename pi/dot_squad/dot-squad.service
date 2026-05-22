@@ -1,0 +1,18 @@
+[Unit]
+Description=Dot Squad LED API Server
+After=network.target
+
+[Service]
+Type=simple
+User=louis
+WorkingDirectory=/opt/projects/dev/chunky-cheese/pi/dot_squad
+
+ExecStart=/opt/projects/dev/chunky-cheese/pi/dot_squad/venv/bin/python3 main.py
+
+Restart=always
+RestartSec=3
+
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
