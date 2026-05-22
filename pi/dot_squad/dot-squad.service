@@ -3,9 +3,8 @@ Description=Dot Squad LED API Server
 After=network.target
 
 [Service]
-User=root
+User=pi
 Type=simple
-User=louis
 WorkingDirectory=/opt/projects/dev/chunky-cheese/pi/dot_squad
 
 ExecStart=/opt/projects/dev/chunky-cheese/pi/dot_squad/venv/bin/uvicorn main:app --host 0.0.0.0 --port 4001
