@@ -4,8 +4,6 @@ set -e
 
 SERVICE_NAME="dot-squad"
 INSTALL_DIR="/opt/dot-squad"
-SERVICE_FILE="${SERVICE_NAME}.service"
-
 USER_NAME=${SUDO_USER:-$(whoami)}
 
 # Must run as root
@@ -21,19 +19,17 @@ echo "Installing system packages..."
 apt update
 apt install -y python3 python3-venv python3-pip git
 
-# Copy project to /opt
-echo "Setting up install directory..."
+# Copy project
+echo "Copying project to $INSTALL_DIR..."
 
 mkdir -p "$INSTALL_DIR"
-
-# If running from repo directory
 cp -r . "$INSTALL_DIR"
 
 chown -R $USER_NAME:$USER_NAME "$INSTALL_DIR"
 
 cd "$INSTALL_DIR"
 
-# Create virtual environment
+# Python venv
 echo "Creating virtual environment..."
 
 python3 -m venv venv
@@ -46,41 +42,36 @@ if [ -f requirements.txt ]; then
   pip install -r requirements.txt
 fi
 
-# Install systemd service
+deactivate
+
+# Install systemd service (FROM FILE)
 echo "Installing systemd service..."
 
-SERVICE_PATH="/etc/systemd/system/$SERVICE_FILE"
+SERVICE_SRC="$INSTALL_DIR/service/dot-squad.service"
+SERVICE_DEST="/etc/systemd/system/dot-squad.service"
 
-cat <<EOF > $SERVICE_PATH
-[Unit]
-Description=Dot Squad LED API Server
-After=network.target
+if [ ! -f "$SERVICE_SRC" ]; then
+  echo "❌ Service file not found at $SERVICE_SRC"
+  exit 1
+fi
 
-[Service]
-Type=simple
-User=$USER_NAME
-WorkingDirectory=$INSTALL_DIR
+cp "$SERVICE_SRC" "$SERVICE_DEST"
+chmod 644 "$SERVICE_DEST"
 
-ExecStart=$INSTALL_DIR/venv/bin/uvicorn main:app --host 0.0.0.0 --port 4001
-
-Restart=always
-RestartSec=3
-Environment=PYTHONUNBUFFERED=1
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Enable service
+# Enable + start service
 echo "Reloading systemd..."
 systemctl daemon-reload
-systemctl enable $SERVICE_NAME
-systemctl restart $SERVICE_NAME
+systemctl enable "$SERVICE_NAME"
+systemctl restart "$SERVICE_NAME"
 
 # Done
 echo "Dot Squad installed successfully!"
+echo ""
 echo "Service status:"
-systemctl status $SERVICE_NAME --no-pager
+systemctl status "$SERVICE_NAME" --no-pager
 
-# Test
-curl localhost:4001/run-led/notify_01
+# Optional test (safe)
+echo ""
+echo "Testing API..."
+sleep 4
+curl -s http://localhost:4001/ > /dev/null && echo "✅ API is running" || echo "⚠️ API not responding yet"
