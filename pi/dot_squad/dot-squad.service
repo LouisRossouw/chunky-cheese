@@ -3,6 +3,7 @@ Description=Dot Squad LED API Server
 After=network.target
 
 [Service]
+User=root
 Type=simple
 User=louis
 WorkingDirectory=/opt/projects/dev/chunky-cheese/pi/dot_squad
