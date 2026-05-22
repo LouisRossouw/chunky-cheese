@@ -7,7 +7,7 @@ Type=simple
 User=louis
 WorkingDirectory=/opt/projects/dev/chunky-cheese/pi/dot_squad
 
-ExecStart=/opt/projects/dev/chunky-cheese/pi/dot_squad/venv/bin/python3 main.py
+ExecStart=/opt/projects/dev/chunky-cheese/pi/dot_squad/venv/bin/uvicorn main:app --host 0.0.0.0 --port 4001
 
 Restart=always
 RestartSec=3
