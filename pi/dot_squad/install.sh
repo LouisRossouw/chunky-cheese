@@ -55,7 +55,11 @@ if [ ! -f "$SERVICE_SRC" ]; then
   exit 1
 fi
 
-cp "$SERVICE_SRC" "$SERVICE_DEST"
+# Create a temp service file with the correct user
+cp "$SERVICE_SRC" "/tmp/dot-squad.service"
+sed -i "s/^User=.*/User=$USER_NAME/" "/tmp/dot-squad.service"
+
+cp "/tmp/dot-squad.service" "$SERVICE_DEST"
 chmod 644 "$SERVICE_DEST"
 
 # Enable + start service
