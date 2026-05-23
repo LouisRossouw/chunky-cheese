@@ -1,4 +1,6 @@
+import os
 import time
+import requests
 import configparser
 
 from gpiozero import MotionSensor
@@ -27,7 +29,6 @@ BRIGHTNESS_PATH = config["DEFAULT"].get(
 )
 
 # PRE-FLIGHT CHECK
-import os
 if not os.path.exists(BRIGHTNESS_PATH):
     print(f"CRITICAL ERROR: Backlight path not found at {BRIGHTNESS_PATH}")
     print("Please check your configuration or hardware drivers.")
@@ -58,7 +59,8 @@ def set_brightness(value):
         with open(BRIGHTNESS_PATH, "w") as f:
             f.write(str(value))
     except PermissionError:
-        print(f"PERMISSION ERROR: Cannot write to {BRIGHTNESS_PATH}. Is the service running with correct permissions?")
+        print(
+            f"PERMISSION ERROR: Cannot write to {BRIGHTNESS_PATH}. Is the service running with correct permissions?")
         exit(1)
     except Exception as e:
         print(f"ERROR: Failed to set brightness: {e}")
@@ -95,6 +97,13 @@ while True:
 
             if PRINT_LOGS:
                 print("Motion detected → Full brightness")
+
+            # Trigger Dot Squad LED notification
+            try:
+                requests.post("http://localhost:4001/run-led/boot", timeout=2)
+            except Exception as e:
+                if PRINT_LOGS:
+                    print(f"API Notification failed: {e}")
 
     diff = time.time() - last_motion
 
