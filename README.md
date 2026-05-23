@@ -8,4 +8,4 @@ Installers to set up fresh systems from scratch. - I think.
 
 ### ./pi
 
-Hardware-specific projects for the Raspberry Pi ecosystem, scripts, services, etc.
+Hardware-specific projects for the Raspberry Pi ecosystem, scripts, microservices, etc.
