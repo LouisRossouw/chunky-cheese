@@ -11,6 +11,11 @@ chmod +x install.sh
 sudo ./install.sh
 ```
 
+## Addressable LED Strip
+
+- WS2812B
+- 3 LEDs
+
 ## Wiring (Default)
 
 | Dot Squad | Raspberry Pi |
