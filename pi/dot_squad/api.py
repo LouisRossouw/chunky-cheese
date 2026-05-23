@@ -8,11 +8,10 @@ import led
 
 def heartbeat_loop():
     while True:
-        time.sleep(5)
-        # Pulse dim white flash for 100ms, then off
+        time.sleep(2)
         led.run([
-            {"colors": [(0, 0, 0), (10, 10, 10), (0, 0, 0)], "duration": 0.1},
-            {"colors": [(0, 0, 0), (0, 0, 0), (0, 0, 0)], "duration": 0.0}
+            {"colors": [(0, 0, 0), (100, 100, 100), (0, 0, 0)], "duration": 0.1},
+            {"colors": [(0, 0, 0)] * 3, "duration": 0.0}
         ])
 
 
