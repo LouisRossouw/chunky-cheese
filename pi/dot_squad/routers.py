@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 from pydantic import BaseModel
 from typing import List, Tuple
 
@@ -25,13 +25,13 @@ def root():
 
 
 @router.post("/run-led/{notification}")
-def run_led(notification: str):
-    run(led_animations.get(notification))
+def run_led(notification: str, background_tasks: BackgroundTasks):
+    background_tasks.add_task(run, led_animations.get(notification))
     return {"ok": True}
 
 
 @router.post("/run-led-sequence")
-def run_led_sequence(anim: Animation):
-    run(anim.frames)
+def run_led_sequence(anim: Animation, background_tasks: BackgroundTasks):
+    background_tasks.add_task(run, anim.frames)
 
     return {"ok": True}
