@@ -98,9 +98,11 @@ while True:
             if PRINT_LOGS:
                 print("Motion detected → Full brightness")
 
+            # Temp
             # Trigger Dot Squad LED notification
             try:
-                requests.post("http://localhost:4001/run/boot", timeout=2)
+                requests.post(
+                    "http://localhost:4001/run/motion_detected", timeout=2)
             except Exception as e:
                 if PRINT_LOGS:
                     print(f"API Notification failed: {e}")
@@ -116,6 +118,15 @@ while True:
             if PRINT_LOGS:
                 print("No motion → Dim")
 
+            # Temp
+            # Trigger Dot Squad LED notification
+            try:
+                requests.post(
+                    "http://localhost:4001/run/motion_dim", timeout=2)
+            except Exception as e:
+                if PRINT_LOGS:
+                    print(f"API Notification failed: {e}")
+
     # Turn Off
     if diff > OFF_AFTER:
         if is_on:
@@ -125,5 +136,14 @@ while True:
 
             if PRINT_LOGS:
                 print("No motion → Off")
+
+            # Temp
+            # Trigger Dot Squad LED notification
+            try:
+                requests.post(
+                    "http://localhost:4001/run/motion_off", timeout=2)
+            except Exception as e:
+                if PRINT_LOGS:
+                    print(f"API Notification failed: {e}")
 
     time.sleep(LOOP_DELAY)
