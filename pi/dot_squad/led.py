@@ -3,6 +3,8 @@ import board
 import neopixel
 import threading
 
+from led_map import led_animations
+
 pixels = neopixel.NeoPixel(board.D18, 3)
 led_lock = threading.Lock()
 
@@ -14,10 +16,10 @@ def run(frames):
         for frame in frames:
             colors = frame['colors']
             duration = frame['duration']
-    
+
             for i, color in enumerate(colors):
                 pixels[i] = color
-    
+
             time.sleep(duration)
 
 
@@ -27,10 +29,6 @@ def clear():
 
 
 if __name__ == "__main__":
-
     while True:
         time.sleep(1)
-        run([
-        {"colors": [(255, 0, 0), (255, 0, 230), (0, 0, 255)], "duration": 0.05},  # nopep8
-        {"colors": [(214, 250, 255), (214, 250, 255), (214, 250, 255)], "duration": 0.05},  # nopep8
-    ])
+        run(led_animations.get("notify_02"))

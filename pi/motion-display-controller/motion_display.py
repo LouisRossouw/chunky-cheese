@@ -100,7 +100,7 @@ while True:
 
             # Trigger Dot Squad LED notification
             try:
-                requests.post("http://localhost:4001/run-led/boot", timeout=2)
+                requests.post("http://localhost:4001/run/boot", timeout=2)
             except Exception as e:
                 if PRINT_LOGS:
                     print(f"API Notification failed: {e}")

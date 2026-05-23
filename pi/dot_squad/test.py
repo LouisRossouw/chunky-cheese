@@ -15,7 +15,7 @@ if __name__ == "__main__":
     # )
 
     res = requests.post(
-        url="http://10.0.0.158:4001/run-led/notify_01",
+        url="http://10.0.0.158:4001/run/notify_01",
         # json=body
     )
 

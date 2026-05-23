@@ -21,16 +21,16 @@ class Animation(BaseModel):
 
 @router.get("/")
 def root():
-    return {"info": "Dot-Squad"}
+    return {"info": "Dot-Squad led service"}
 
 
-@router.post("/run-led/{notification}")
+@router.post("/run/{notification}")
 def run_led(notification: str, background_tasks: BackgroundTasks):
     background_tasks.add_task(run, led_animations.get(notification))
     return {"ok": True}
 
 
-@router.post("/run-led-sequence")
+@router.post("/run-sequence")
 def run_led_sequence(anim: Animation, background_tasks: BackgroundTasks):
     background_tasks.add_task(run, anim.frames)
 
