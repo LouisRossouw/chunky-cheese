@@ -11,6 +11,7 @@ from .motion_dim import animation as motion_dim
 from .motion_detected import animation as motion_detected
 
 from .low_kwh_alert import animation as low_kwh_alert
+from .extreme_low_kwh_alert import animation as extreme_low_kwh_alert
 
 led_animations = {
     "boot": boot,
@@ -22,4 +23,5 @@ led_animations = {
     "motion_dim": motion_dim,
     "motion_off": motion_off,
     "low_kwh_alert": low_kwh_alert,
+    "extreme_low_kwh_alert": extreme_low_kwh_alert,
 }
