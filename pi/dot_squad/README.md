@@ -5,7 +5,7 @@
   <img src="https://github.com/user-attachments/assets/1203f8ed-4b89-4186-8056-d13ef5c71cde" width="45%" />
 </p>
 
-Local running HTTP microservice for controlling the Dot Squad LED display on a Raspberry Pi.
+Local running HTTP microservice for controlling the Dot Squad LED display (custom) on a Raspberry Pi.
 
 ## (Production) Installation
 
