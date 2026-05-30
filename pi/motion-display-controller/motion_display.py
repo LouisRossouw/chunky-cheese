@@ -4,6 +4,8 @@ import requests
 import configparser
 
 from gpiozero import MotionSensor
+from dot_squad import run_dot_squad
+
 
 # CONFIG
 config = configparser.ConfigParser(inline_comment_prefixes=('#', ';'))
@@ -23,10 +25,13 @@ FADE_STEP = config["DEFAULT"].getint("FADE_STEP", 5)
 FADE_DELAY = config["DEFAULT"].getfloat("FADE_DELAY", 0.01)
 PRINT_LOGS = config["DEFAULT"].getboolean("PRINT_LOGS", False)
 
+DOTSQUAD = config["DEFAULT"].getboolean("DOTSQUAD", False)
+
 BRIGHTNESS_PATH = config["DEFAULT"].get(
     "BRIGHTNESS_PATH",
     "/sys/class/backlight/10-0045/brightness"
 )
+
 
 # PRE-FLIGHT CHECK
 if not os.path.exists(BRIGHTNESS_PATH):
@@ -98,14 +103,8 @@ while True:
             if PRINT_LOGS:
                 print("Motion detected → Full brightness")
 
-            # Temp
-            # Trigger Dot Squad LED notification
-            try:
-                requests.post(
-                    "http://localhost:4001/run/motion_detected", timeout=2)
-            except Exception as e:
-                if PRINT_LOGS:
-                    print(f"API Notification failed: {e}")
+            if DOTSQUAD:
+                run_dot_squad("motion_detected")
 
     diff = time.time() - last_motion
 
@@ -118,14 +117,8 @@ while True:
             if PRINT_LOGS:
                 print("No motion → Dim")
 
-            # Temp
-            # Trigger Dot Squad LED notification
-            try:
-                requests.post(
-                    "http://localhost:4001/run/motion_dim", timeout=2)
-            except Exception as e:
-                if PRINT_LOGS:
-                    print(f"API Notification failed: {e}")
+            if DOTSQUAD:
+                run_dot_squad("motion_dim")
 
     # Turn Off
     if diff > OFF_AFTER:
@@ -137,13 +130,7 @@ while True:
             if PRINT_LOGS:
                 print("No motion → Off")
 
-            # Temp
-            # Trigger Dot Squad LED notification
-            try:
-                requests.post(
-                    "http://localhost:4001/run/motion_off", timeout=2)
-            except Exception as e:
-                if PRINT_LOGS:
-                    print(f"API Notification failed: {e}")
+            if DOTSQUAD:
+                run_dot_squad("motion_off")
 
     time.sleep(LOOP_DELAY)
