@@ -1,8 +1,9 @@
 # Dot Squad: Pi LED Micro Service
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5b3952eb-a1cf-4974-85d7-5a1e92353f3d" width="45%" />
-  <img src="https://github.com/user-attachments/assets/1203f8ed-4b89-4186-8056-d13ef5c71cde" width="45%" />
+  <img src="https://github.com/user-attachments/assets/36e37c52-8302-42d5-ac3c-83b42f21e959" width="32%" />
+  <img src="https://github.com/user-attachments/assets/1203f8ed-4b89-4186-8056-d13ef5c71cde" width="32%" />
+  <img src="https://github.com/user-attachments/assets/a7f22471-5a03-4bbb-ac26-b748957aae02" width="32%" />
 </p>
 
 Local running HTTP microservice for controlling the Dot Squad LED display (custom) on a Raspberry Pi.
