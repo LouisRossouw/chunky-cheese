@@ -1,6 +1,10 @@
-from api import ServiceApi
+from core.config import Config
+from api.api import ServiceApi
 
-server = ServiceApi()
+# TODO; Config should also define the host & port number
+
+config = Config()
+server = ServiceApi(config)
 app = server.app
 
 if __name__ == "__main__":
