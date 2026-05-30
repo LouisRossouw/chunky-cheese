@@ -1,11 +1,9 @@
 import time
-# import board
-# import neopixel
+import board
+import neopixel
 import threading
 
-from core.anims import led_animations
-
-# pixels = neopixel.NeoPixel(board.D18, 3)
+pixels = neopixel.NeoPixel(board.D18, 3)
 led_lock = threading.Lock()
 
 
@@ -22,25 +20,30 @@ class DotSquad():
                 duration = frame['duration']
 
                 for i, color in enumerate(colors):
-                    print(color)
-                    # pixels[i] = color
+                    pixels[i] = color
 
                 time.sleep(duration)
 
     def heartbeat_loop(self):
+        """ General heartbeat to show the service is running. """
+
         while True:
             self.run(self.anims.get('heartbeat'))
             time.sleep(2)
 
     def clear(self):
+        """ Clears neopixel """
+
         with led_lock:
-            # pixels.fill((0, 0, 0))
-            print("clear clear")
+            pixels.fill((0, 0, 0))
 
 
 if __name__ == "__main__":
+    from config import Config
+
     DS = DotSquad()
+    config = Config()
 
     while True:
         time.sleep(1)
-        DS.run(led_animations.get("notify_02"))
+        DS.run(config.anims.get("notify_02"))
