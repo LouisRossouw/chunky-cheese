@@ -1,5 +1,5 @@
 from core.config import Config
-from api.api import ServiceApi
+from api.service_api import ServiceApi
 
 # TODO; Config should also define the host & port number
 
