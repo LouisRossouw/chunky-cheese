@@ -9,7 +9,9 @@ led_lock = threading.Lock()
 
 class DotSquad():
     def __init__(self, config):
+
         self.anims = config.anims
+        self.heartbeat_interval = config.heartbeat_interval
 
     def run(self, frames):
         """ Runs the led frame sequence """
@@ -29,7 +31,7 @@ class DotSquad():
 
         while True:
             self.run(self.anims.get('heartbeat'))
-            time.sleep(2)
+            time.sleep(self.heartbeat_interval)
 
     def clear(self):
         """ Clears neopixel """

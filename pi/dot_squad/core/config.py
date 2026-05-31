@@ -5,6 +5,8 @@ from core.plugins import led_animations_plugins
 class Config():
     def __init__(self):
 
+        self.heartbeat_interval = 2
+
         self.led_animations_plugins = led_animations_plugins
         self.led_animations = led_animations
 
