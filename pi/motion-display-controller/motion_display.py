@@ -1,7 +1,11 @@
+import os
 import time
+import requests
 import configparser
 
 from gpiozero import MotionSensor
+from dot_squad import run_dot_squad
+
 
 # CONFIG
 config = configparser.ConfigParser(inline_comment_prefixes=('#', ';'))
@@ -21,13 +25,15 @@ FADE_STEP = config["DEFAULT"].getint("FADE_STEP", 5)
 FADE_DELAY = config["DEFAULT"].getfloat("FADE_DELAY", 0.01)
 PRINT_LOGS = config["DEFAULT"].getboolean("PRINT_LOGS", False)
 
+DOTSQUAD = config["DEFAULT"].getboolean("DOTSQUAD", False)
+
 BRIGHTNESS_PATH = config["DEFAULT"].get(
     "BRIGHTNESS_PATH",
     "/sys/class/backlight/10-0045/brightness"
 )
 
+
 # PRE-FLIGHT CHECK
-import os
 if not os.path.exists(BRIGHTNESS_PATH):
     print(f"CRITICAL ERROR: Backlight path not found at {BRIGHTNESS_PATH}")
     print("Please check your configuration or hardware drivers.")
@@ -58,7 +64,8 @@ def set_brightness(value):
         with open(BRIGHTNESS_PATH, "w") as f:
             f.write(str(value))
     except PermissionError:
-        print(f"PERMISSION ERROR: Cannot write to {BRIGHTNESS_PATH}. Is the service running with correct permissions?")
+        print(
+            f"PERMISSION ERROR: Cannot write to {BRIGHTNESS_PATH}. Is the service running with correct permissions?")
         exit(1)
     except Exception as e:
         print(f"ERROR: Failed to set brightness: {e}")
@@ -96,6 +103,9 @@ while True:
             if PRINT_LOGS:
                 print("Motion detected → Full brightness")
 
+            if DOTSQUAD:
+                run_dot_squad("motion_detected")
+
     diff = time.time() - last_motion
 
     # Dim
@@ -107,6 +117,9 @@ while True:
             if PRINT_LOGS:
                 print("No motion → Dim")
 
+            if DOTSQUAD:
+                run_dot_squad("motion_dim")
+
     # Turn Off
     if diff > OFF_AFTER:
         if is_on:
@@ -116,5 +129,8 @@ while True:
 
             if PRINT_LOGS:
                 print("No motion → Off")
+
+            if DOTSQUAD:
+                run_dot_squad("motion_off")
 
     time.sleep(LOOP_DELAY)
