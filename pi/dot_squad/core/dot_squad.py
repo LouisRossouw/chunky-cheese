@@ -1,9 +1,9 @@
 import time
-# import board
-# import neopixel
+import board
+import neopixel
 import threading
 
-# pixels = neopixel.NeoPixel(board.D18, 3)
+pixels = neopixel.NeoPixel(board.D18, 3)
 led_lock = threading.Lock()
 
 
@@ -20,8 +20,7 @@ class DotSquad():
                 duration = frame['duration']
 
                 for i, color in enumerate(colors):
-                    # pixels[i] = color
-                    pass
+                    pixels[i] = color
 
                 time.sleep(duration)
 
@@ -36,8 +35,7 @@ class DotSquad():
         """ Clears neopixel """
 
         with led_lock:
-            # pixels.fill((0, 0, 0))
-            pass
+            pixels.fill((0, 0, 0))
 
 
 if __name__ == "__main__":
