@@ -2,7 +2,7 @@
 
 I dump all my random scripts / services / stuff here.
 
-### ./installs
+### ./installers
 
 Installers to set up fresh systems from scratch. - I think.
 
