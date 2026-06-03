@@ -23,7 +23,7 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/installs.list"
-# Repo root is 3 levels up from installs/pi/home-pie-electricity-kiosk/
+# Repo root is 3 levels up from installers/pi/home-pie-electricity-kiosk/
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 
 if [ ! -f "$CONFIG_FILE" ]; then
