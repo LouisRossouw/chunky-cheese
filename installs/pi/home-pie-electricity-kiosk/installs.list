@@ -1,0 +1,5 @@
+# Define the install scripts to be executed.
+# Paths should be relative to the repository root for best portability.
+
+pi/dot_squad/install.sh
+pi/motion-display-controller/install.sh
