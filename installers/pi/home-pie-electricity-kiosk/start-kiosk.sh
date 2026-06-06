@@ -3,7 +3,7 @@
 export DISPLAY=:0
 
 set -a
-source ~/.config/kiosk/.env
+source /opt/project/dev/chunky-cheese/installers/pi/home-pie-electricity-kiosk/.env
 set +a
 
 chromium \
