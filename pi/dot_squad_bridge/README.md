@@ -22,3 +22,14 @@ sudo ./install.sh
 2. Enable **Developer mode**
 3. Click **Load unpacked**
 4. Select this folder
+
+After the install, you can now pass led patterns to the chrome extension
+```bash
+window.postMessage(
+  {
+    type: "LED_TRIGGER",
+    pattern: "low_kwh_alert", // this will trigger this animation pi\dot_squad\core\anims\low_kwh_alert.json
+  },
+  "*",
+);
+```
