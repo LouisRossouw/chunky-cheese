@@ -2,6 +2,7 @@ const TRUSTED_ORIGINS = [
   "http://localhost",
   "http://127.0.0.1",
   "http://10.0.0.158",
+  "http://10.0.0.152:7777",
   "http://localhost:5173",
   "null", // For local file:// testing
 ];
