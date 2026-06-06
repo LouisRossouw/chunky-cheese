@@ -1,16 +1,24 @@
-Dot Squad bridge
+# Dot Squad Bridge
 
-This chrome extension is responsible for monitoring the KWH values from the home pie electricity kiosk web app and comunicates with the local running dot squad service to trigger the LED patterns. The led service runs locally at 127.0.0.1:4001
+Chrome extension bridge that triggers local [Dot Squad](file:///d:/work/projects/dev/projects/chunky-cheese/pi/dot_squad) LED patterns from the [Kiosk Dashboard](file:///d:/work/projects/dev/projects/kiosk/src/components/KioskDashboard.tsx).
 
-Build the extension:
+The point of this is to keep requests local, so web apps communicte with the bridge and the bridge communicates with the dot squad service at localhost:4001.
 
-1. Run `npm install`
-2. Run `npm run build`
-3. The extension will be built in the `dist` folder
+## Installation
 
-Install the extension:
+\*This needs to be installed on the server running the kiosk.
 
-1. Open chrome://extensions/
-2. Enable developer mode
-3. Click on "Load unpacked"
-4. Select the dot_squad_bridge folder
+### Automated (Recommended)
+
+Run the install script to make the extension available at `/opt/dot_squad_bridge`:
+
+```bash
+sudo ./install.sh
+```
+
+### Manual
+
+1. Open `chrome://extensions/`
+2. Enable **Developer mode**
+3. Click **Load unpacked**
+4. Select this folder
