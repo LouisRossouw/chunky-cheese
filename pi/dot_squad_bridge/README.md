@@ -2,7 +2,7 @@
 
 Chrome extension bridge that triggers local [Dot Squad](file:///d:/work/projects/dev/projects/chunky-cheese/pi/dot_squad) LED patterns from the [Kiosk Dashboard](file:///d:/work/projects/dev/projects/kiosk/src/components/KioskDashboard.tsx).
 
-The point of this is to keep requests local, so web apps communicte with the bridge and the bridge communicates with the dot squad service at localhost:4001.
+The purpose of this bridge is to keep requests local; web apps communicate with the extension, and the extension forwards those requests to the Dot Squad service at localhost:4001.
 
 ## Installation
 
@@ -23,7 +23,10 @@ sudo ./install.sh
 3. Click **Load unpacked**
 4. Select this folder
 
-After the install, you can now pass led patterns to the chrome extension
+### How to use
+
+After the install, you can now pass led patterns to the chrome extension from any front end web app
+
 ```bash
 window.postMessage(
   {
