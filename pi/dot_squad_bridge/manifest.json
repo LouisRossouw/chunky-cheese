@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Dot Squad Agent",
+  "version": "0.1.0",
+  "description": "Bridges web app actions to local services",
+  
+  "permissions": ["storage", "activeTab"],
+  
+  "host_permissions": [
+    "http://127.0.0.1:4001/*",
+    "http://localhost:4001/*",
+    "http://10.0.0.152:4001/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost/*",
+        "http://127.0.0.1/*",
+        "http://10.0.0.158/*",
+        "http://10.0.0.152/*",
+        "file://*/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+
+  "action": {
+    "default_title": "Dot Squad Agent"
+  }
+}
