@@ -25,7 +25,8 @@ FADE_STEP = config["DEFAULT"].getint("FADE_STEP", 5)
 FADE_DELAY = config["DEFAULT"].getfloat("FADE_DELAY", 0.01)
 PRINT_LOGS = config["DEFAULT"].getboolean("PRINT_LOGS", False)
 
-DOTSQUAD = config["DEFAULT"].getboolean("DOTSQUAD", False)
+DOTSQUAD = config["DEFAULT"].getboolean("DOT_SQUAD_ACTIVE", False)
+DOT_SQUAD_URL = config["DEFAULT"].get("DOT_SQUAD_URL", "http://localhost:4001")
 
 BRIGHTNESS_PATH = config["DEFAULT"].get(
     "BRIGHTNESS_PATH",
@@ -104,7 +105,7 @@ while True:
                 print("Motion detected → Full brightness")
 
             if DOTSQUAD:
-                run_dot_squad("motion_detected")
+                run_dot_squad("motion_detected", base_url=DOT_SQUAD_URL)
 
     diff = time.time() - last_motion
 
@@ -118,7 +119,7 @@ while True:
                 print("No motion → Dim")
 
             if DOTSQUAD:
-                run_dot_squad("motion_dim")
+                run_dot_squad("motion_dim", base_url=DOT_SQUAD_URL)
 
     # Turn Off
     if diff > OFF_AFTER:
@@ -131,6 +132,6 @@ while True:
                 print("No motion → Off")
 
             if DOTSQUAD:
-                run_dot_squad("motion_off")
+                run_dot_squad("motion_off", base_url=DOT_SQUAD_URL)
 
     time.sleep(LOOP_DELAY)
