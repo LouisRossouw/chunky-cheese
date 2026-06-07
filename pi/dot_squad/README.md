@@ -63,4 +63,30 @@ curl -X POST http://localhost:4001/run-sequence -d '{
 }'
 ```
 
-or add it into other projects to call the led display.
+### Bridge Chrome extension
+
+If you want a front end web app to communicate with the led hardware, it can be done using the bridge chrome extension - chunky-cheese/pi/dot_squad_bridge
+
+The chrome extension needs to be installed on the browser of the device that has dot squad led hardware attached
+You can now pass led patterns to the chrome extension and the extension forwards those requests to the Dot Squad service at localhost:4001.
+
+```bash
+window.postMessage(
+  {
+    type: "LED_TRIGGER",
+    pattern: "low_kwh_alert", // this will trigger this animation pi\dot_squad\core\anims\low_kwh_alert.json
+  },
+  "*",
+);
+```
+
+anim directories:
+
+anims_overides directory:
+Add custom animations to the pi\dot_squad\core\anims_overides directory, this allows you to overide the current anims, for example add heartbeat.json and it will overide the default heartbeat
+
+anims directory:
+Just a bunch of default anims
+
+plugins:
+Use chatgpt or an AI agent to generate animations as .py files, using loops etc
