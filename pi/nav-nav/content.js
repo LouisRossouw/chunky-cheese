@@ -67,13 +67,15 @@
       }
     });
 
-    // Stop clicks inside the container from escaping to document
-    navContainer.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
-    document.addEventListener('click', () => {
-      if (navMenu.classList.contains('visible')) {
+    document.addEventListener('click', (e) => {
+      if (!navMenu.classList.contains('visible')) return;
+      
+      // If the target is still in the DOM and is NOT inside our container, close it.
+      // If the target is NOT in the DOM (e.g. removed by innerHTML re-render), keep it open.
+      const isInside = navContainer.contains(e.target) || e.target.closest?.('#site-nav-container');
+      const isDetached = !document.documentElement.contains(e.target);
+      
+      if (!isInside && !isDetached) {
         navMenu.classList.remove('visible');
       }
     });
