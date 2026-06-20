@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nav-Nav Settings</title>
+    <link rel="stylesheet" href="options.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nav-Nav Settings</h1>
+            <p>Configure your kiosk navigation shortcuts</p>
+        </header>
+
+        <section class="settings-section">
+            <h2>Button Position</h2>
+            <div class="position-grid">
+                <label class="pos-option">
+                    <input type="radio" name="position" value="top-left">
+                    <div class="pos-box">Top Left</div>
+                </label>
+                <label class="pos-option">
+                    <input type="radio" name="position" value="top-right">
+                    <div class="pos-box">Top Right</div>
+                </label>
+                <label class="pos-option">
+                    <input type="radio" name="position" value="bottom-left" checked>
+                    <div class="pos-box">Bottom Left</div>
+                </label>
+                <label class="pos-option">
+                    <input type="radio" name="position" value="bottom-right">
+                    <div class="pos-box">Bottom Right</div>
+                </label>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <h2>Quick Navigate</h2>
+            <div class="input-group">
+                <input type="text" id="quick-url" placeholder="https://example.com">
+                <button id="go-btn">Go & Save</button>
+            </div>
+        </section>
+
+        <section class="settings-section">
+            <h2>Saved URLs</h2>
+            <div id="url-list" class="url-list">
+                <!-- URLs will be injected here -->
+            </div>
+            <div class="add-url-form">
+                <input type="text" id="new-name" placeholder="Site Name (e.g. Dashboard)">
+                <input type="text" id="new-url" placeholder="URL (https://...)">
+                <button id="add-btn">Add Shortcut</button>
+            </div>
+        </section>
+
+        <div id="status"></div>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>
