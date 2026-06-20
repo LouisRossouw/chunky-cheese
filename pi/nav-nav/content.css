@@ -1,0 +1,299 @@
+
+#Nav-Nav-container {
+  all: initial;
+  position: fixed;
+  z-index: 2147483647;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  pointer-events: none;
+  display: block;
+}
+
+#Nav-Nav-button {
+  all: initial;
+  pointer-events: auto;
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(20, 20, 20, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  color: #ffffff !important;
+  overflow: hidden;
+  box-sizing: border-box !important;
+}
+
+#Nav-Nav-button:hover {
+  transform: scale(1.1) rotate(5deg) !important;
+  background: rgba(40, 40, 40, 0.9) !important;
+  border-color: #3b82f6 !important;
+}
+
+#Nav-Nav-button svg {
+  width: 24px !important;
+  height: 24px !important;
+  fill: #ffffff !important;
+  display: block !important;
+}
+
+#Nav-Nav-menu {
+  all: initial;
+  pointer-events: auto;
+  position: fixed;
+  width: 320px;
+  max-height: 500px;
+  background: rgba(20, 20, 20, 0.9) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 16px !important;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  visibility: hidden;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+#Nav-Nav-menu.visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  visibility: visible !important;
+}
+
+.sn-menu-content {
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  max-height: 400px;
+}
+
+.sn-menu-header {
+  all: initial;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding: 0 8px;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.sn-menu-item .icon {
+  all: initial;
+  margin-right: 12px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(58, 134, 255, 0.2) !important;
+  border: 1px solid rgba(58, 134, 255, 0.4) !important;
+  border-radius: 8px !important;
+  color: #3a86ff !important;
+  font-weight: 800 !important;
+  font-family: inherit;
+  font-size: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+.sn-icon-btn {
+  all: initial;
+  cursor: pointer !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background 0.2s !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.sn-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
+
+.sn-icon-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: currentColor !important;
+}
+
+.sn-empty-msg {
+  all: initial;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  padding: 30px 20px !important;
+  font-family: inherit;
+  display: block !important;
+}
+
+.sn-menu-item {
+  all: initial;
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 14px !important;
+  margin: 4px 0 !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  font-family: inherit;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  box-sizing: border-box !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.sn-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateX(4px) !important;
+  border-color: rgba(58, 134, 255, 0.3) !important;
+}
+
+/* Settings Styles */
+.sn-settings-view {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+.sn-section-title {
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
+}
+
+.sn-pos-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important;
+}
+
+.sn-pos-btn {
+  all: initial;
+  padding: 10px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  font-family: inherit;
+}
+
+.sn-pos-btn.active {
+  background: rgba(58, 134, 255, 0.2) !important;
+  border-color: #3b82f6 !important;
+  color: #3b82f6 !important;
+}
+
+.sn-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.sn-input {
+  all: initial;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-family: inherit;
+  box-sizing: border-box !important;
+}
+
+.sn-input:focus {
+  border-color: #3b82f6 !important;
+}
+
+.sn-btn-primary {
+  all: initial;
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  padding: 10px !important;
+  border-radius: 8px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background 0.2s !important;
+  font-family: inherit;
+}
+
+.sn-btn-primary:hover {
+  background: #2563eb !important;
+}
+
+.sn-delete-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.sn-delete-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+}
+
+.sn-btn-delete {
+  all: initial;
+  color: #ef4444 !important;
+  cursor: pointer !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 4px 8px !important;
+}
+
+.sn-btn-delete:hover {
+  text-decoration: underline !important;
+}
+
+/* Positions */
+.sn-bottom-left { bottom: 20px !important; left: 20px !important; }
+.sn-bottom-right { bottom: 20px !important; right: 20px !important; }
+.sn-top-left { top: 20px !important; left: 20px !important; }
+.sn-top-right { top: 20px !important; right: 20px !important; }
+
+/* Scrollbar */
+#Nav-Nav-menu::-webkit-scrollbar {
+  width: 4px;
+}
+#Nav-Nav-menu::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
