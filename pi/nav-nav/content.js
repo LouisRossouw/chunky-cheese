@@ -19,10 +19,43 @@
   }
 
   function loadSettingsAndInit() {
-    chrome.storage.local.get(['position', 'urls'], (result) => {
-      console.log('Nav-Nav: Loaded settings', result);
+    chrome.storage.local.get(['position', 'urls'], async (result) => {
+      console.log('Nav-Nav: Loaded local storage', result);
+      
+      // Default settings
       if (result.position) settings.position = result.position;
-      if (result.urls) settings.urls = result.urls;
+      
+      // Try to load from config.json first
+      try {
+        const response = await fetch(chrome.runtime.getURL('config.json'));
+        if (response.ok) {
+          const config = await response.json();
+          console.log('Nav-Nav: Loaded config.json', config);
+          if (config.position && !result.position) settings.position = config.position;
+          
+          // Merge URLs: priority to config.json for "static" deployment, 
+          // but allow local storage to override if needed. 
+          // For now, let's just combine them or use config as base.
+          settings.urls = [...(config.urls || []), ...(result.urls || [])];
+          
+          // Remove duplicates by URL
+          const uniqueUrls = [];
+          const map = new Map();
+          for (const item of settings.urls) {
+            if (!map.has(item.url)) {
+              map.set(item.url, true);
+              uniqueUrls.push(item);
+            }
+          }
+          settings.urls = uniqueUrls;
+        } else {
+          if (result.urls) settings.urls = result.urls;
+        }
+      } catch (e) {
+        console.log('Nav-Nav: No config.json found or error loading it.', e);
+        if (result.urls) settings.urls = result.urls;
+      }
+      
       createUI();
     });
   }

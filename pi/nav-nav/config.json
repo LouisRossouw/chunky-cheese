@@ -1,0 +1,13 @@
+{
+  "position": "bottom-left",
+  "urls": [
+    {
+      "name": "Energy",
+      "url": "http://10.0.0.152:7777/?kiosk=true"
+    },
+    {
+      "name": "3D Printer ??",
+      "url": "http://10.0.0.152:8080/?printer=70cf808d3fbba5efee75ae78a88ebbc8#/"
+    }
+  ]
+}

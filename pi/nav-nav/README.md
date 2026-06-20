@@ -18,3 +18,9 @@ Is is used to navigate between web apps on a kiosk device (raspberry pi with a t
 - Click "Load unpacked" and select the D:\work\projects\dev\projects\chunky-cheese\pi\Nav-Nav directory.
 - Click on the extension icon or navigate to the options page by right-clicking the extension icon and selecting "Options".
 - Add some URLs and change the button position to verify everything works as expected.
+
+## Add a new URL
+
+- Open the options page by right-clicking the extension icon and selecting "Options".
+- Add a new URL and change the button position to verify everything works as expected.
+- Alternatively add a url via the /.config.json file.
