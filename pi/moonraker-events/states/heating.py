@@ -7,8 +7,8 @@ from animations.heartbeat import Heartbeat
 class HeatingState:
     def apply(self, leds):
 
-        leds.segment("front_left").animation = HeatingProgress(mode='bed')
-        leds.segment("front_right").animation = HeatingProgress(mode='extruder')
+        leds.segment("front_left").animation = HeatingProgress(mode='bed', color_bg=(0, 0, 0))
+        leds.segment("front_right").animation = HeatingProgress(mode='extruder', color_bg=(0, 0, 0))
         leds.segment("heartbeat").animation = Heartbeat(color=(0, 0, 200))
 
         # Inside segments are solid red during pre-heating
