@@ -1,7 +1,7 @@
 from animation import Animation
 
 class HeatingProgress(Animation):
-    def __init__(self, mode='bed', color_bg=(0, 0, 0)):
+    def __init__(self, mode='bed', color_bg=(20, 20, 20)):
         self.mode = mode
         self.color_bg = color_bg
 
