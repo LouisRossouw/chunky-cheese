@@ -9,11 +9,11 @@ class PrintingState:
 
     def apply(self, leds):
         leds.segment("front_left").animation = Solid((0, 0, 0))
-        leds.segment("front_right").animation = Progress(color_active=(0, 255, 0), mode='print')
+        leds.segment("front_right").animation = Progress(color_active=(0, 255, 0), color_bg=(0, 0, 0), mode='print')
         leds.segment("heartbeat").animation = Heartbeat(color=(0, 200, 0))
         
         # Inside columns show Z tracker
-        tracker = ZTracker(color=(0, 0, 255))
+        tracker = ZTracker(color=(0, 0, 255), reverse=True)
         leds.segment("inside_left").animation = tracker
         leds.segment("inside_right").animation = tracker
         

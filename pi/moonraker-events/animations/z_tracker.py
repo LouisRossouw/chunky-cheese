@@ -1,9 +1,10 @@
 from animation import Animation
 
 class ZTracker(Animation):
-    def __init__(self, color=(255, 255, 0), bg_color=(0, 0, 0)):
+    def __init__(self, color=(255, 255, 0), bg_color=(0, 0, 0), reverse=False):
         self.color = color
         self.bg_color = bg_color
+        self.reverse = reverse
 
     def render(self, segment, pixels, printer_state):
         z = 0.0
@@ -16,6 +17,8 @@ class ZTracker(Animation):
 
         pct = max(0.0, min(1.0, z / max_z))
         led_idx = int(pct * (segment.length - 1))
+        if self.reverse:
+            led_idx = (segment.length - 1) - led_idx
 
         for i in range(segment.length):
             if i == led_idx:
