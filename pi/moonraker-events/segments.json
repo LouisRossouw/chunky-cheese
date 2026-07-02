@@ -1,0 +1,50 @@
+[
+    {
+        "name": "front_right",
+        "start_led": 0,
+        "end_led": 17,
+        "reverse": false
+    },
+    {
+        "name": "front_left",
+        "start_led": 55,
+        "end_led": 75,
+        "reverse": true
+    },
+    {
+        "name": "heartbeat",
+        "start_led": 18,
+        "end_led": 18,
+        "reverse": false
+    },
+    {
+        "name": "inside_right",
+        "start_led": 19,
+        "end_led": 38,
+        "reverse": true
+    },
+    {
+        "name": "inside_left",
+        "start_led": 76,
+        "end_led": 98,
+        "reverse": false
+    },
+    {
+        "name": "inside_top_center",
+        "start_led": 38,
+        "end_led": 56,
+        "reverse": false
+    },
+    {
+        "name": "center_top",
+        "start_led": 95,
+        "end_led": 112,
+        "reverse": false
+    },
+    {
+        "name": "toolhead",
+        "start_led": 113,
+        "end_led": 118,
+        "reverse": false
+    }
+]
