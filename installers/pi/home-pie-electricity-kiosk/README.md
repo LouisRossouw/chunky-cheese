@@ -10,3 +10,7 @@ start-kiosk.sh will launch chrome in kiosk mode and navigate to the url below.
 KIOSK_URL=http://10.0.0.152:7777
 ```
 
+## Install
+
+1. Run the installer.sh
+2. It will install all the services from the install.list
