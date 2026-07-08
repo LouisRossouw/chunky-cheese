@@ -23,8 +23,8 @@ class RainbowCycle(Animation):
     """
 
     def __init__(self, speed=60.0):
-        self.speed = speed
         self._hue_offset = 0.0
+        self.speed = speed
 
     def update(self, dt):
         self._hue_offset = (self._hue_offset + self.speed * dt) % 256.0

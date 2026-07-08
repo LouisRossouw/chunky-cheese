@@ -84,10 +84,16 @@ async def moonraker_loop(led_manager, state, app_state):
 
 async def main():
     parser = argparse.ArgumentParser(description="Moonraker LED Controller")
+
     parser.add_argument(
         "--no-moonraker",
         action="store_true",
         help="Skip the Moonraker connection (useful for standalone API testing)",
+    )
+    parser.add_argument(
+        "--no-api",
+        action="store_true",
+        help="Skip the FastAPI server (useful for headless/service deployments)",
     )
     parser.add_argument("--host", default="0.0.0.0", help="API server host (default: 0.0.0.0)")
     parser.add_argument("--port", type=int, default=8080, help="API server port (default: 8080)")
@@ -107,10 +113,13 @@ async def main():
     # Start the render loop as a background task
     render_task = asyncio.create_task(render_loop(renderer, state))
 
-    # Always start the API server
-    api_task = asyncio.create_task(api_loop(app, args.host, args.port))
+    tasks = [render_task]
 
-    tasks = [render_task, api_task]
+    if not args.no_api:
+        api_task = asyncio.create_task(api_loop(app, args.host, args.port))
+        tasks.append(api_task)
+    else:
+        print("API server skipped (--no-api flag set)")
 
     if not args.no_moonraker:
         moonraker_task = asyncio.create_task(

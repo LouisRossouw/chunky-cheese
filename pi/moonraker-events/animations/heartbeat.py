@@ -1,7 +1,7 @@
 from animation import Animation
 
 class Heartbeat(Animation):
-    def __init__(self, color=(0, 200, 0), period=2.0):
+    def __init__(self, color=(0, 0, 200), period=2.0):
         self.color = color
         self.period = period
         self.time = 0
