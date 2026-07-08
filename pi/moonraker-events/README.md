@@ -1,12 +1,69 @@
-# Moonraker LEDS
+# moonraker-events
 
-Subscribes to the Moonraker websock events and updates addressable leds based on the events being received.
+A daemon that subscribes to [Moonraker](https://moonraker.readthedocs.io/) WebSocket events and drives addressable NeoPixel LED segments on an Ender 3D printer based on printer state.
 
-i.e.
+## Features
 
-1. If bed heating, update leds to be red
-2. If print complete, update leds to be green
+- Reacts to printer events (heating, printing, errors, completion) and maps them to LED animations per segment
+- REST API (FastAPI) for manual control and testing — supports switching between `auto` (Moonraker-driven) and `manual` mode
+- Modular animation system — each LED segment can run an independent animation
+- Runs as a `systemd` service at boot
 
-etc.
+## Project Structure
 
-wip !
+```
+moonraker-events/
+├── main.py           # Entry point; manages async loops
+├── api.py            # FastAPI REST API
+├── state.py          # Printer state model
+├── manager.py        # Maps printer state → LED segment animations
+├── renderer.py       # Writes animations to physical LEDs
+├── animation.py      # Base animation class
+├── animations/       # Individual animation implementations
+├── segments.json     # LED segment configuration
+├── moonraker.py      # Moonraker WebSocket client
+├── requirements.txt
+└── service/
+    └── moonraker-events.service  # systemd unit file
+```
+
+## Installation
+
+```bash
+# Deploy to /opt and set up the service
+sudo cp -r . /opt/moonraker-events
+cd /opt/moonraker-events
+python3 -m venv venv
+venv/bin/pip install -r requirements.txt
+
+sudo cp service/moonraker-events.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable moonraker-events
+sudo systemctl start moonraker-events
+```
+
+## Running Manually
+
+```bash
+# Run with Moonraker connection
+python main.py
+
+# Run without Moonraker (API-only, useful for testing)
+python main.py --no-moonraker --port 4001
+```
+
+## API
+
+Docs available at `http://<pi-ip>:4001/docs` when the service is running.
+
+Key endpoints:
+
+- `GET /status` — current printer state and LED mode
+- `POST /mode` — switch between `auto` / `manual`
+- `POST /segment/{id}/animation` — manually set an animation on a segment
+
+## Requirements
+
+- Raspberry Pi with NeoPixel LED strip wired up
+- Moonraker running on the same network
+- Python 3.10+
