@@ -1,0 +1,17 @@
+[Unit]
+Description=Moonraker Events
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/moonraker-events
+
+ExecStart=/opt/moonraker-events/venv/bin/python main.py --no-api
+
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
