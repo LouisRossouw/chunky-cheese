@@ -9,3 +9,8 @@
 1. Raspberry pi
 2. Moonraker api
 3. Addressable leds
+
+## Install
+
+1. Run the installer.sh
+2. It will install all the services from the install.list
