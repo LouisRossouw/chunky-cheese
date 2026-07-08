@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Master Install Script for Dynamic Kiosk Setup
+# Master Install Script for apps in ./installers/*
 # This script reads from installs.list and executes specified sub-installers.
 
 set -e
@@ -12,8 +12,10 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}====================================================${NC}"
-echo -e "${BLUE}   Chunky Cheese - Dynamic Kiosk Installer          ${NC}"
+echo -e "${BLUE}   Chunky Cheese - Installer                        ${NC}"
 echo -e "${BLUE}====================================================${NC}"
+
+
 
 # Ensure we are running as root
 if [ "$EUID" -ne 0 ]; then
@@ -22,17 +24,37 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG_FILE="$SCRIPT_DIR/installs.list"
-# Repo root is 3 levels up from installers/pi/home-pie-electricity-kiosk/
-REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo -e "${RED}Error: Configuration file $CONFIG_FILE not found.${NC}"
-  exit 1
+CONFIG_FILE=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --config)
+            CONFIG_FILE="$2"
+            shift 2
+            ;;
+        *)
+            shift
+            ;;
+    esac
+done
+
+if [[ -z "$CONFIG_FILE" ]]; then
+    echo -e "${RED}Error: No config file specified.${NC}"
+    exit 1
 fi
 
-echo -e "${BLUE}Reading installation list from: $CONFIG_FILE${NC}"
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo -e "${RED}Error: Configuration file '$CONFIG_FILE' not found.${NC}"
+    exit 1
+fi
+
+INSTALLER_DIR="$(dirname "$CONFIG_FILE")"
+
 echo -e "${BLUE}Repository root: $REPO_ROOT${NC}"
+echo -e "${BLUE}Installer directory: $INSTALLER_DIR${NC}"
+echo -e "${BLUE}Reading installation list: $CONFIG_FILE${NC}"
 echo ""
 
 # Loop through each line in installs.list
