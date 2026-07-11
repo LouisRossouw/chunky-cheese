@@ -1,4 +1,4 @@
-# moonraker-events
+# moonraker_events
 
 A daemon that subscribes to [Moonraker](https://moonraker.readthedocs.io/) WebSocket events and drives addressable NeoPixel LED segments on an Ender 3D printer based on printer state.
 
@@ -12,7 +12,7 @@ A daemon that subscribes to [Moonraker](https://moonraker.readthedocs.io/) WebSo
 ## Project Structure
 
 ```
-moonraker-events/
+moonraker_events/
 ├── main.py           # Entry point; manages async loops
 ├── api.py            # FastAPI REST API
 ├── state.py          # Printer state model
@@ -24,22 +24,22 @@ moonraker-events/
 ├── moonraker.py      # Moonraker WebSocket client
 ├── requirements.txt
 └── service/
-    └── moonraker-events.service  # systemd unit file
+    └── moonraker_events.service  # systemd unit file
 ```
 
 ## Installation
 
 ```bash
 # Deploy to /opt and set up the service
-sudo cp -r . /opt/moonraker-events
-cd /opt/moonraker-events
+sudo cp -r . /opt/moonraker_events
+cd /opt/moonraker_events
 python3 -m venv venv
 venv/bin/pip install -r requirements.txt
 
-sudo cp service/moonraker-events.service /etc/systemd/system/
+sudo cp service/moonraker_events.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable moonraker-events
-sudo systemctl start moonraker-events
+sudo systemctl enable moonraker_events
+sudo systemctl start moonraker_events
 ```
 
 ## Running Manually

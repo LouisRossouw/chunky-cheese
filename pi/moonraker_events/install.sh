@@ -2,8 +2,8 @@
 
 set -e
 
-SERVICE_NAME="moonraker-events"
-INSTALL_DIR="/opt/moonraker-events"
+SERVICE_NAME="moonraker_events"
+INSTALL_DIR="/opt/moonraker_events"
 USER_NAME=${SUDO_USER:-$(whoami)}
 
 # Must run as root
@@ -47,8 +47,8 @@ deactivate
 # Install systemd service
 echo "Installing systemd service..."
 
-SERVICE_SRC="$INSTALL_DIR/service/moonraker-events.service"
-SERVICE_DEST="/etc/systemd/system/moonraker-events.service"
+SERVICE_SRC="$INSTALL_DIR/service/moonraker_events.service"
+SERVICE_DEST="/etc/systemd/system/moonraker_events.service"
 
 if [ ! -f "$SERVICE_SRC" ]; then
   echo "❌ Service file not found at $SERVICE_SRC"

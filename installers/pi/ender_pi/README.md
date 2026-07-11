@@ -2,7 +2,7 @@
 
 1. It has been flashed with Klipper
 2. It is controlled by a Raspberry pi 3B+
-3. This just installs moonraker-events which controls the leds
+3. This just installs moonraker_events which controls the leds
 
 ## Requires:
 

@@ -5,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/opt/moonraker-events
+WorkingDirectory=/opt/moonraker_events
 
-ExecStart=/opt/moonraker-events/venv/bin/python main.py --no-api
+ExecStart=/opt/moonraker_events/venv/bin/python main.py --no-api
 
 Restart=always
 RestartSec=3

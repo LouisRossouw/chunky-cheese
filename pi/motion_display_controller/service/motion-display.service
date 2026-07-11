@@ -5,8 +5,8 @@ After=multi-user.target
 [Service]
 Type=simple
 User=pi
-WorkingDirectory=/opt/motion-display-controller
-ExecStart=/usr/bin/python3 /opt/motion-display-controller/motion_display.py
+WorkingDirectory=/opt/motion_display_controller
+ExecStart=/usr/bin/python3 /opt/motion_display_controller/motion_display.py
 Restart=always
 RestartSec=2
 Environment=PYTHONUNBUFFERED=1
