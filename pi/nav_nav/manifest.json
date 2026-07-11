@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Nav-Nav",
+  "name": "nav_nav",
   "version": "1.0",
   "description": "Navigation assistant for Kiosk mode.",
   "permissions": ["storage"],
@@ -14,7 +14,7 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Nav-Nav Settings"
+    "default_title": "nav_nav Settings"
   },
   "options_page": "options.html",
   "content_scripts": [

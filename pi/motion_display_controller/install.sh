@@ -4,7 +4,7 @@ set -e
 
 USER_NAME=${SUDO_USER:-$(whoami)}
 SERVICE_NAME="motion-display"
-INSTALL_DIR="/opt/motion-display-controller"
+INSTALL_DIR="/opt/motion_display_controller"
 
 # Ensure running as root
 if [ "$EUID" -ne 0 ]; then

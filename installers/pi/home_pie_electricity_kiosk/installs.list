@@ -1,4 +1,7 @@
 # Define the install scripts to be executed.
 # Paths should be relative to the repository root for best portability.
 
-pi/moonraker-events/install.sh
+pi/dot_squad/install.sh
+pi/motion_display_controller/install.sh
+pi/dot_squad_bridge/install.sh
+pi/nav_nav/install.sh

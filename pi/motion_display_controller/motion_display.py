@@ -9,7 +9,7 @@ from dot_squad import run_dot_squad
 
 # CONFIG
 config = configparser.ConfigParser(inline_comment_prefixes=('#', ';'))
-config.read("/opt/motion-display-controller/config/motion.conf")
+config.read("/opt/motion_display_controller/config/motion.conf")
 
 GPIO_PIN = config["DEFAULT"].getint("GPIO_PIN", 4)
 
