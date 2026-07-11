@@ -3,7 +3,7 @@
 set -e
 
 USER_NAME=${SUDO_USER:-$(whoami)}
-SERVICE_NAME="motion-display"
+SERVICE_NAME="motion_display"
 INSTALL_DIR="/opt/motion_display_controller"
 
 # Ensure running as root

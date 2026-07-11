@@ -15,8 +15,8 @@ Currently using it for Raspberry Pi 3B+ with a HC-SR501 PIR sensor and an ISP DS
 
 ## Management
 
-- **Check Status**: `sudo systemctl status motion-display.service`
-- **View Logs**: `sudo journalctl -u motion-display.service -f`
+- **Check Status**: `sudo systemctl status motion_display.service`
+- **View Logs**: `sudo journalctl -u motion_display.service -f`
 - **Config**: Edit `/opt/motion_display_controller/config/motion.conf`
 
 ## Wiring (Default)
