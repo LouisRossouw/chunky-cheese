@@ -4,7 +4,7 @@ My random scripts / services / stuff that i build gets added here.
 
 ### ./installers
 
-Installers to set up fresh systems from scratch. - I think.
+./Installers to automate & set up fresh systems from scratch.
 
 installers/ender-pi:
 <p align="center">
