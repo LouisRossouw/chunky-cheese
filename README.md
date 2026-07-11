@@ -1,6 +1,6 @@
 # 🧀 chunky-cheese
 
-I dump all my random scripts / services / stuff here.
+My random scripts / services / stuff that i build gets added here.
 
 ### ./installers
 
