@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiFi Relay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      padding: 48px 40px;
+      width: 360px;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+    }
+
+    .icon {
+      font-size: 52px;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    #reconnect-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      letter-spacing: 0.2px;
+    }
+
+    #reconnect-btn:hover:not(:disabled) {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    #reconnect-btn:disabled {
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      min-height: 20px;
+      transition: color 0.2s;
+    }
+
+    #status.success { color: #22c55e; }
+    #status.error   { color: #ef4444; }
+    #status.pending { color: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <span class="icon">📡</span>
+    <h1>WiFi Relay</h1>
+    <p>Lost connection? Tap the button below to toggle the WiFi radio and force a reconnect.</p>
+    <button id="reconnect-btn" onclick="reconnect()">Reconnect WiFi</button>
+    <div id="status"></div>
+  </div>
+
+  <script>
+    async function reconnect() {
+      const btn = document.getElementById('reconnect-btn');
+      const status = document.getElementById('status');
+
+      btn.disabled = true;
+      btn.textContent = 'Reconnecting…';
+      status.textContent = 'Toggling WiFi radio…';
+      status.className = 'pending';
+
+      try {
+        const res = await fetch('/wifi/reconnect', { method: 'POST' });
+        const data = await res.json();
+        if (res.ok && data.success !== false) {
+          status.textContent = '✓ ' + (data.message || 'Reconnect triggered successfully.');
+          status.className = 'success';
+          btn.textContent = '✓ Done';
+        } else {
+          status.textContent = '✗ ' + (data.message || 'Something went wrong.');
+          status.className = 'error';
+          btn.textContent = 'Reconnect WiFi';
+          btn.disabled = false;
+        }
+      } catch (e) {
+        status.textContent = '✗ Could not reach the relay service.';
+        status.className = 'error';
+        btn.textContent = 'Reconnect WiFi';
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
